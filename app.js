@@ -215,6 +215,7 @@ app.use((req, res, next) => {
     if (req.method === 'GET' && req.path.includes('.html')) {
         // Redirect to the desired path, for example, the root path
         res.redirect('/');
+        console.log('path')
     } else {
         next();
     }
