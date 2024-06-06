@@ -211,6 +211,19 @@ app.get('/link/complete', async (req, res) => {
   }
 });
 
+app.use((req, res, next) => {
+    if (req.method === 'GET' && req.path.includes('.html')) {
+        // Redirect to the desired path, for example, the root path
+        res.redirect('/');
+    } else {
+        next();
+    }
+});
+
+app.use((req, res) => {
+    res.redirect('/');
+});
+
 // Route handler for form submission
 app.post('/receive', async (req, res) => {
   let message = '';
