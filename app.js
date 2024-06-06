@@ -221,9 +221,6 @@ app.use((req, res, next) => {
     }
 });
 
-app.use((req, res) => {
-    res.redirect('/');
-});
 
 // Route handler for form submission
 app.post('/receive', async (req, res) => {
