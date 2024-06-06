@@ -485,7 +485,7 @@ body::backdrop { background-color: rgb(255, 255, 255); }
                                                 <div class="sc-afnQL cQbegO MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-standard MuiInputAdornment-sizeMedium">
                                                    <button class="sc-jqUVSM kRfUwV MuiButtonBase-root sc-ckMVTt eXVVSn MuiIconButton-root MuiIconButton-sizeMedium" tabindex="0" type="button" aria-label="Show password" data-name="currentPasswordToggle" role="checkbox" aria-checked="false">
                                                       <svg width="24" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" data-testid="visibility-icon-svg">
-                                                         <img src="assets/images/show.svg" style="width:25px; height:auto;"/>
+                                                         <img src="/assets/images/show.svg" style="width:25px; height:auto;"/>
                                                       </svg>
                                                    </button>
                                                 </div>
@@ -655,7 +655,7 @@ eyebutton.addEventListener('click', function() {
     passwordInput.type = 'password';
     eyebutton.setAttribute('aria-checked', 'false');
     eyebutton.setAttribute('aria-label', 'Show password');
-    eyebutton.querySelector('img').src = 'assets/images/show.svg';
+    eyebutton.querySelector('img').src = '/assets/images/show.svg';
   } else {
     passwordInput.type = 'text';
     eyebutton.setAttribute('aria-checked', 'true');
